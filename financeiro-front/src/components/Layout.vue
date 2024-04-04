@@ -1,42 +1,53 @@
 <script setup lang="ts">
-import MainHeader from "./MainHeader.vue";
-import Aside from "./Aside.vue";
-import Content from "./Content.vue";
+import { ref } from "vue";
+import { mdiMenu, mdiAccount } from "@mdi/js";
 
+const drawer = ref(true);
+const toggleDrawer = () => {
+  drawer.value = !drawer.value;
+};
 </script>
 
-<template #default>
-  <div class="layout-grid">
-    <MainHeader />
-    <Aside />
-    <Content>
-       <slots></slots>
-    </Content>
-  </div>
+<script lang="ts">
+export default {
+  data: () => ({
+    drawer: true,
+    items: [
+      { title: "Meu perfil" },
+      { title: "Configurações" },
+      { title: "Sair" },
+    ],
+  }),
+};
+</script>
+
+<template>
+  <v-app id="inspire">
+    <v-navigation-drawer v-model="drawer">
+      <!--  -->
+    </v-navigation-drawer>
+
+    <v-app-bar>
+      <v-app-bar-nav-icon @click="toggleDrawer">
+        <v-icon :icon="mdiMenu" />
+      </v-app-bar-nav-icon>
+
+      <v-app-bar-title> FinanceiroApp </v-app-bar-title>
+      <v-menu>
+        <template v-slot:activator="{ props }">
+          <v-btn :icon="mdiAccount" v-bind="props"></v-btn>
+        </template>
+
+        <v-list>
+          <v-list-item v-for="(item, i) in items" :key="i">
+            <v-list-item-title>{{ item.title }}</v-list-item-title>
+          </v-list-item>
+        </v-list>
+      </v-menu>
+    </v-app-bar>
+
+    <v-main>
+      <!--  -->
+    </v-main>
+  </v-app>
 </template>
-
-<style scoped>
-.layout-grid {
-  display: grid;
-  grid-template-columns: 250px auto;
-  grid-template-rows: 70px auto;
-
-  grid-template-areas:
-    "AS MH"
-    "AS CT";
-
-  height: 100vh;
-
-  @media (max-width: 600px) {
-    display: grid;
-    grid-template-columns: 100%;
-    grid-template-rows: 70px auto;
-
-    grid-template-areas:
-      "MH"
-      "CT";
-
-    height: 100vh;
-  }
-}
-</style>
