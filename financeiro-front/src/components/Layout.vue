@@ -1,7 +1,27 @@
 <script setup lang="ts">
 import { ref } from "vue";
 import { mdiArrowExpandLeft, mdiArrowExpandRight, mdiAccount } from "@mdi/js";
+import { Doughnut } from "vue-chartjs";
+import {
+  Chart as ChartJS,
+  Title,
+  Tooltip,
+  Legend,
+  CategoryScale,
+  LinearScale,
+  RadarController,
+  ArcElement,
+} from "chart.js";
 
+ChartJS.register(
+  Title,
+  Tooltip,
+  Legend,
+  RadarController,
+  CategoryScale,
+  LinearScale,
+  ArcElement
+);
 const drawer = ref(true);
 const toggleDrawer = () => {
   drawer.value = !drawer.value;
@@ -17,6 +37,24 @@ export default {
       { title: "Configurações" },
       { title: "Sair" },
     ],
+    chartData: {
+      labels: ["Red", "Blue", "Yellow"],
+      datasets: [
+        {
+          label: "My First Dataset",
+          data: [300, 50, 100],
+          backgroundColor: [
+            "rgb(255, 99, 132)",
+            "rgb(54, 162, 235)",
+            "rgb(255, 205, 86)",
+          ],
+          hoverOffset: 4,
+        },
+      ],
+    },
+    chartOptions: {
+      responsive: false,
+    },
   }),
 };
 </script>
@@ -47,7 +85,68 @@ export default {
     </v-app-bar>
 
     <v-main>
-      <!--  -->
+      <div class="dashboard-div">
+        <h1>Dashboard</h1>
+        <div :style="{
+          display: 'flex',
+          flexDirection: 'row',
+          justifyContent: 'center',
+          gap: '50px',
+          flexWrap: 'wrap'
+        }">
+          <v-card title="Financias Gustavo" width="fit-content">
+            <Doughnut
+              id="my-chart-id"
+              :options="chartOptions"
+              :data="chartData"
+              :style="{
+                width: '500px',
+                height: '500px',
+              }"
+          /></v-card>
+          <v-card title="Financias Luisa" width="fit-content">
+            <Doughnut
+              id="my-chart-id"
+              :options="chartOptions"
+              :data="chartData"
+              :style="{
+                width: '500px',
+                height: '500px',
+              }"
+          /></v-card>
+          <v-card title="Financias Concilia" width="fit-content">
+            <Doughnut
+              id="my-chart-id"
+              :options="chartOptions"
+              :data="chartData"
+              :style="{
+                width: '500px',
+                height: '500px',
+              }"
+          /></v-card>
+          <v-card title="Financias Casa" width="fit-content">
+            <Doughnut
+              id="my-chart-id"
+              :options="chartOptions"
+              :data="chartData"
+              :style="{
+                width: '500px',
+                height: '500px',
+              }"
+          /></v-card>
+        </div>
+      </div>
     </v-main>
   </v-app>
 </template>
+
+<style scoped>
+.dashboard-div {
+
+  padding: 20px 50px;
+
+  h1 {
+    margin-bottom: 30px;
+  }
+}
+</style>
