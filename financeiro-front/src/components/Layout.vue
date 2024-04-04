@@ -100,8 +100,8 @@ export default {
               :options="chartOptions"
               :data="chartData"
               :style="{
-                width: '500px',
-                height: '500px',
+                width: '435px',
+                height: '435px',
               }"
           /></v-card>
           <v-card title="Financias Luisa" width="fit-content">
@@ -110,8 +110,8 @@ export default {
               :options="chartOptions"
               :data="chartData"
               :style="{
-                width: '500px',
-                height: '500px',
+                width: '435px',
+                height: '435px',
               }"
           /></v-card>
           <v-card title="Financias Concilia" width="fit-content">
@@ -120,8 +120,8 @@ export default {
               :options="chartOptions"
               :data="chartData"
               :style="{
-                width: '500px',
-                height: '500px',
+                width: '435px',
+                height: '435px',
               }"
           /></v-card>
           <v-card title="Financias Casa" width="fit-content">
@@ -130,8 +130,8 @@ export default {
               :options="chartOptions"
               :data="chartData"
               :style="{
-                width: '500px',
-                height: '500px',
+                width: '435px',
+                height: '435px',
               }"
           /></v-card>
         </div>
