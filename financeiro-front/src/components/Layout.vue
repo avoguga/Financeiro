@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ref } from "vue";
-import { mdiMenu, mdiAccount } from "@mdi/js";
+import { mdiArrowExpandLeft, mdiArrowExpandRight, mdiAccount } from "@mdi/js";
 
 const drawer = ref(true);
 const toggleDrawer = () => {
@@ -29,7 +29,7 @@ export default {
 
     <v-app-bar>
       <v-app-bar-nav-icon @click="toggleDrawer">
-        <v-icon :icon="mdiMenu" />
+        <v-icon :icon="drawer ? mdiArrowExpandLeft : mdiArrowExpandRight" />
       </v-app-bar-nav-icon>
 
       <v-app-bar-title> FinanceiroApp </v-app-bar-title>
